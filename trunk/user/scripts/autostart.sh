@@ -34,6 +34,11 @@ do
 	fi
 done
 
+if [ $(nvram get gecoac_enable) = 1 ] ; then
+logger -t "自动启动" "正在启动巴法云"
+/usr/bin/gecoac.sh start
+fi
+
 if [ $(nvram get afycx_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动巴法云"
 /usr/bin/afycx.sh start
