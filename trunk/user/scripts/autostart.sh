@@ -35,7 +35,7 @@ do
 done
 
 if [ $(nvram get gecoac_enable) = 1 ] ; then
-logger -t "自动启动" "正在启动巴法云"
+logger -t "自动启动" "正在启动集客AC管理"
 /usr/bin/gecoac.sh start
 fi
 
