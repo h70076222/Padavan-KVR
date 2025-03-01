@@ -30,6 +30,7 @@ $j(document).ready(function() {
 	init_itoggle('zerotier_enable');
 	init_itoggle('zerotier_nat');
 	init_itoggle('afycx_enable');
+	init_itoggle('gecoac_enable');
 
 });
 
@@ -151,6 +152,12 @@ function showMRULESList(){
 }
 
 function button_vnts_web(){
+	var port = '60650';
+	var url = window.location.protocol + "//" + window.location.hostname + ":" + port;
+	window.open(url);
+}
+
+function button_gecoac_web(){
 	var port = '60650';
 	var url = window.location.protocol + "//" + window.location.hostname + ":" + port;
 	window.open(url);
@@ -315,6 +322,26 @@ function button_vnts_web(){
 													<input type="radio" value="0" name="afycx_enable" id="afycx_enable_0" class="input" value="0" <% nvram_match_x("", "afycx_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 												 需要打开启动
+											</td>
+											<tr>
+											<th width="30%" style="border-top: 0 none;">启用集客AC管理服务</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="gecoac_enable_on_of">
+														<input type="checkbox" id="gecoac_enable_fake" <% nvram_match_x("", "gecoac_enable", "1", "value=1 checked"); %><% nvram_match_x("", "gecoac_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="gecoac_enable" id="gecoac_enable_1" class="input" value="1" <% nvram_match_x("", "gecoac_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="gecoac_enable" id="gecoac_enable_0" class="input" value="0" <% nvram_match_x("", "gecoac_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+												 需要打开重起机启动
+											</td>
+											</tr>
+										<tr>
+									<td style="border-top: 0 none;">
+	&nbsp;<input class="btn btn-success" style="" type="button" value="打开集客管理页面" onclick="button_gecoac_web()" />
+												</div>
 											</td>
 										</tr>
 										<tr>
