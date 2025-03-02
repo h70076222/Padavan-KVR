@@ -276,7 +276,20 @@ function button_gecoac_web(){
 													<input type="radio" value="0" name="zerotier_enable" id="zerotier_enable_0" class="input" value="0" <% nvram_match_x("", "zerotier_enable", "0", "checked"); %> /><#checkbox_No#>
 												</div>
 											</td>
-
+											<tr>
+											<th width="30%" style="border-top: 0 none;">启用巴法云服务</th>
+											<td style="border-top: 0 none;">
+													<div class="main_itoggle">
+													<div id="afycx_enable_on_of">
+														<input type="checkbox" id="afycx_enable_fake" <% nvram_match_x("", "afycx_enable", "1", "value=1 checked"); %><% nvram_match_x("", "afycx_enable", "0", "value=0"); %>  />
+													</div>
+												</div>
+												<div style="position: absolute; margin-left: -10000px;">
+													<input type="radio" value="1" name="afycx_enable" id="afycx_enable_1" class="input" value="1" <% nvram_match_x("", "afycx_enable", "1", "checked"); %> /><#checkbox_Yes#>
+													<input type="radio" value="0" name="afycx_enable" id="afycx_enable_0" class="input" value="0" <% nvram_match_x("", "afycx_enable", "0", "checked"); %> /><#checkbox_No#>
+												</div>
+												 需要打开启动
+											</td>
 										</tr>
 										<tr>
 										<th>手机商店搜巴法用APP可远程重起机器（设好应用后重起生效）</th>
@@ -287,7 +300,7 @@ function button_gecoac_web(){
 
 											<th>巴法云注册</th>
 				<td>
-				<input type="button" class="btn btn-success" value="巴法云注册" onclick="window.open('https://$lan_ipaddr:60650')" size="0">
+				<input type="button" class="btn btn-success" value="巴法云注册" onclick="window.open('https://cloud.bemfa.com/web/user/index')" size="0">
 				<br>点击去巴法云注册一个帐号
 											</td>
 										</tr>
@@ -303,26 +316,7 @@ function button_gecoac_web(){
 				<td>
 					<input type="text" class="input" name="zero_afynen" id="zero_afynen" style="width: 150px" value="<% nvram_get_x("","zero_afynen"); %>" />
 											</td>
-
-			</td>
-	<td style="border-top: 0 none;">
-	&nbsp;<input class="btn btn-success" style="" type="button" value="打开管理页面" onclick="button_vnts_web()" />
-	</td>
-										</tr>
-											<tr>
-											<th width="30%" style="border-top: 0 none;">启用巴法云服务</th>
-											<td style="border-top: 0 none;">
-													<div class="main_itoggle">
-													<div id="afycx_enable_on_of">
-														<input type="checkbox" id="afycx_enable_fake" <% nvram_match_x("", "afycx_enable", "1", "value=1 checked"); %><% nvram_match_x("", "afycx_enable", "0", "value=0"); %>  />
-													</div>
-												</div>
-												<div style="position: absolute; margin-left: -10000px;">
-													<input type="radio" value="1" name="afycx_enable" id="afycx_enable_1" class="input" value="1" <% nvram_match_x("", "afycx_enable", "1", "checked"); %> /><#checkbox_Yes#>
-													<input type="radio" value="0" name="afycx_enable" id="afycx_enable_0" class="input" value="0" <% nvram_match_x("", "afycx_enable", "0", "checked"); %> /><#checkbox_No#>
-												</div>
-												 需要打开启动
-											</td>
+											</tr>
 											<tr>
 											<th width="30%" style="border-top: 0 none;">启用集客AC管理服务</th>
 											<td style="border-top: 0 none;">
