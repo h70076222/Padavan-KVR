@@ -17,7 +17,7 @@
 #undef  BOARD_GPIO_LED_SW5G
 #define  BOARD_GPIO_LED_POWER	10
 #undef  BOARD_GPIO_LED_LAN
-#define BOARD_GPIO_LED_WAN	16		/* net_blue: 16, net_yellow: 14 */
+#define BOARD_GPIO_LED_WAN	16
 #undef BOARD_GPIO_LED_USB
 #undef BOARD_GPIO_LED_ROUTER
 #undef  BOARD_GPIO_PWR_USB
