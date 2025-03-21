@@ -629,6 +629,23 @@ void restart_wireguard(void){
 }
 #endif
 
+#if defined(APP_HXCLI)
+void stop_hxcli(void){
+	eval("/usr/bin/hx.sh","stop");
+}
+
+void start_hxcli(void){
+	int hxcli_enable = nvram_get_int("hxcli_enable");
+	if ( hxcli_enable == 1)
+		eval("/usr/bin/hx.sh","start");
+}
+
+void restart_hxcli(void){
+	stop_hxcli();
+	start_hxcli();
+}
+#endif
+
 #if defined(APP_ALDRIVER)
 void stop_aldriver(void){
 	eval("/usr/bin/aliyundrive-webdav.sh","stop");
@@ -942,6 +959,9 @@ stop_services(int stopall)
 #if defined(APP_WIREGUARD)
 	stop_wireguard();
 #endif
+#if defined(APP_HXCLI)
+	stop_hxcli();
+#endif	
 #if defined(APP_ALDRIVER)
 	stop_aldriver();
 #endif
