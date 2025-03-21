@@ -228,7 +228,7 @@ ifneq ($(CONFIG_FIRMWARE_INCLUDE_WYY),y)
 	rm -f $(INSTALLDIR)/www/Advanced_wyy.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_ZEROTIER),y)
-	rm -f $(INSTALLDIR)/www/Advanced_zerotier.asp
+	rm -f $(INSTALLDIR)/www/Advanced_vpnkey.asp
 endif
 ifeq ($(CONFIG_FIRMWARE_INCLUDE_FRPC)_$(CONFIG_FIRMWARE_INCLUDE_FRPS), n_n)
 	rm -f $(INSTALLDIR)/www/Advanced_frp.asp
@@ -245,6 +245,9 @@ ifneq ($(CONFIG_FIRMWARE_INCLUDE_DDNSTO),y)
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_WIREGUARD),y)
 	rm -f $(INSTALLDIR)/www/Advanced_wireguard.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXCLI),y)
+	rm -f $(INSTALLDIR)/www/Advanced_hxzn.asp
 endif
 ifneq ($(CONFIG_FIRMWARE_INCLUDE_ALDRIVER),y)
 	rm -f $(INSTALLDIR)/www/Advanced_aliyundrive.asp
