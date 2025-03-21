@@ -736,6 +736,12 @@ if (found_app_aldriver()) {
 	menuL2.push(mx);
 	tabMenuHash.put('22', mx2);
 }
+if (found_app_hxcli()) {
+	var mx = { "title": "<#Web_Title#>", "link": "Advanced_hxzn.asp", index: "23" };
+	var mx2 = [{ "title": "<#Web_Title#_1#>", "link": "Advanced_hxzn.asp" }];
+	menuL2.push(mx);
+	tabMenuHash.put('23', mx2);
+}
 /* plugin menu 插件菜单 结束*/
 
 /* 旧代码兼容/as.asp menu compatibility start */
