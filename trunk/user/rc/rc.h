@@ -617,6 +617,11 @@ void stop_wireguard(void);
 void start_wireguard(void);
 void restart_wireguard(void);
 #endif
+#if defined(APP_HXCLI)
+void stop_hxcli(void);
+void start_hxcli(void);
+void restart_hxcli(void);
+#endif
 #if defined(APP_ALDRIVER)
 void stop_aldriver(void);
 void start_aldriver(void);
