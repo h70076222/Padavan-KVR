@@ -2379,6 +2379,15 @@ static int aliyundrive_status_hook(int eid, webs_t wp, int argc, char **argv)
 }
 #endif
 
+#if defined (APP_HXCLI)
+static int hxcli_status_hook(int eid, webs_t wp, int argc, char **argv)
+{
+	int hxcli_status_code = pids("hx-cli");
+	websWrite(wp, "function hxcli_status() { return %d;}\n", hxcli_status_code);
+	return 0;
+}
+#endif
+
 static int update_action_hook(int eid, webs_t wp, int argc, char **argv)
 {
 	char *up_action = websGetVar(wp, "connect_action", "");
@@ -2663,6 +2672,11 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 #else
 	int found_app_wireguard = 0;
 #endif
+#if defined(APP_HXCLI)
+	int found_app_hxcli = 1;
+#else
+	int found_app_hxcli = 0;
+#endif	
 #if defined(APP_ALDRIVER)
 	int found_app_aldriver = 1;
 #else
@@ -2854,6 +2868,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		"function found_app_aldriver() { return %d;}\n"
 		"function found_app_aliddns() { return %d;}\n"
 		"function found_app_wireguard() { return %d;}\n"
+		"function found_app_hxcli() { return %d;}\n"
 		"function found_app_xupnpd() { return %d;}\n"
 		"function found_app_mentohust() { return %d;}\n",
 		found_utl_hdparm,
@@ -2892,6 +2907,7 @@ ej_firmware_caps_hook(int eid, webs_t wp, int argc, char **argv)
 		found_app_aldriver,
 		found_app_aliddns,
 		found_app_wireguard,
+		found_app_hxcli,
 		found_app_xupnpd,
 		found_app_mentohust
 	);
@@ -3655,6 +3671,63 @@ apply_cgi(const char *url, webs_t wp)
 		websRedirect(wp, current_url);
 		return 0;
 	}
+	else if (!strcmp(value, " Restarthxcli "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh restart &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " Updatehxcli "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh update &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxinfo "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxinfo &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxall "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxall &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxlist "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxlist &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxroute "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxroute &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " CMDhxstatus "))
+	{
+#if defined(APP_HXCLI)
+		system("/usr/bin/hxzn.sh hxstatus &");
+#endif
+		return 0;
+	}
+	else if (!strcmp(value, " ClearhxcliLog "))
+	{
+#if defined(APP_HXCLI)
+		unlink("/tmp/hx-cli.log");
+#endif
+		websRedirect(wp, current_url);
+		return 0;
+	}		
 	else if (!strcmp(value, " Reboot "))
 	{
 		sys_reboot();
@@ -4300,6 +4373,21 @@ static char mentohust_log_txt[] =
 
 #endif
 
+#if defined (APP_HXCLI)
+static void
+do_hxcli_log_file(const char *url, FILE *stream)
+{
+	dump_file(stream, "/tmp/hx-cli.log");
+	fputs("\r\n", stream);
+}
+
+static char hxcli_log_txt[] =
+"Content-Disposition: attachment;\r\n"
+"filename=hx-cli.log"
+;
+
+#endif
+
 #if defined (APP_KOOLPROXY)
 static void
 do_kp_crt_file(const char *url, FILE *stream)
@@ -4358,6 +4446,9 @@ struct mime_handler mime_handlers[] = {
 #endif
 #if defined(APP_MENTOHUST)
 	{ "mentohust.log", "application/force-download", mentohust_log_txt, NULL, do_mentohust_log_file, 1 },
+#endif
+#if defined(APP_HXCLI)
+	{ "hx-cli.log", "application/force-download", hxcli_log_txt, NULL, do_hxcli_log_file, 1 },
 #endif
 #if defined(APP_OPENVPN)
 	{ "client.ovpn", "application/force-download", NULL, NULL, do_export_ovpn_client, 1 },
@@ -4702,6 +4793,9 @@ struct ej_handler ej_handlers[] =
 #endif
 #if defined (APP_DDNSTO)
 	{ "ddnsto_status", ddnsto_status_hook},
+#endif
+#if defined (APP_HXCLI)
+	{ "hxcli_status", hxcli_status_hook},
 #endif
 #if defined (APP_ALDRIVER)
 	{ "aliyundrive_status", aliyundrive_status_hook},
