@@ -1414,6 +1414,12 @@ handle_notifications(void)
 			restart_wireguard();
 		}
 #endif
+#if defined(APP_HXCLI)
+		else if (strcmp(entry->d_name, RCN_RESTART_HXCLI) == 0)
+		{
+			restart_hxcli();
+		}
+#endif			
 #if defined(APP_ALDRIVER)
 		else if (strcmp(entry->d_name, RCN_RESTART_ALDRIVER) == 0)
 		{
