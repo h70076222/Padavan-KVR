@@ -737,7 +737,7 @@ if (found_app_aldriver()) {
 	tabMenuHash.put('22', mx2);
 }
 if (found_app_hxcli()) {
-	var mx = { "title": "<#Web_Title#>", "link": "Advanced_hxzn.asp", index: "23" };
+	var mx = { "title": "<#menu5_37#>", "link": "Advanced_hxzn.asp", index: "23" };
 	var mx2 = [{ "title": "<#Web_Title#_1#>", "link": "Advanced_hxzn.asp" }];
 	menuL2.push(mx);
 	tabMenuHash.put('23', mx2);
