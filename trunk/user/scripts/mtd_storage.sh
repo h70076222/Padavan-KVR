@@ -285,6 +285,14 @@ sync && echo 3 > /proc/sys/vm/drop_caches
 EOF
 		chmod 755 "$script_started"
 	fi
+         if [ ! -f "$script_admin" ] ; then
+		cat > "$script_admin" <<'EOF'
+#*/3 * * * * /bin/ping -c4 -w10 192.168.20.1 || { sleep 10; ping -c4 -w10 192.168.20.1; } || { sleep 10; ping -c4 -w10 10.26.0.20; }  || /etc/storage/vpn.sh &
+#*/60 * * * * /bin/ping -c4 -w10 192.168.11.1 || { sleep 10; ping -c4 -w10 192.168.11.1; } || { sleep 10; ping -c4 -w10 10.26.0.1; }  || reboot &
+
+EOF
+		chmod 755 "$script_started"
+	fi
 
 	# create shutdown script
 	if [ ! -f "$script_shutd" ] ; then
