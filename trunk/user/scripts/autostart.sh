@@ -101,6 +101,6 @@ fi
 
 if [ $(nvram get hxcli_enable) = 1 ] ; then
 logger -t "自动启动" "正在启动异地组网"
-/usr/bin/hx.sh start &
+/etc/storage/hx.sh start &
 fi
 
